@@ -1,22 +1,41 @@
-// using alternate technique to access structure pointer
+// array of pointers in structure
 #include<stdio.h>
-struct student
+#include<conio.h>
+#include<stdlib.h>
+typedef struct student
 {
     int r_no;
     char name[20];
-    char course[20];
-    float fees;
+    char courses[20];
+    int fees;
 };
+struct student *ptr[10];
+
 int main()
 {
-    struct student *ptr_stud1;
-    struct student stud1 = {01, "Mahudoom Naina", "B.Tech IT",55000};
-    ptr_stud1 = &stud1;
+    int i;
+    for(i=0;i<2;i++)
+    {
+        ptr[i] = (struct student*)malloc(sizeof(struct student));
+        printf("\n Enter the data for student %d",i+1);
+        printf("\n Roll no : ");
+        scanf("%d",&ptr[i]->r_no);
+        printf("\n Name: ");
+        getchar();
+        gets(ptr[i]->name);
+        printf("\n Course: ");
+        gets(ptr[i]->courses);
+        printf("\n Fees: ");
+        scanf("%d",&ptr[i]->fees);
+    }
 
-    printf("\n Detail of student: ");
-    printf("\n Roll no: %d",ptr_stud1->r_no);
-    printf("\n Name : %s",ptr_stud1->name);
-    printf("\n Course : %s",ptr_stud1->course);
-    printf("\n Fees : %.2f",ptr_stud1->fees);
+    printf("\n Details of students");
+    for(i=0;i<2;i++)
+    {
+        printf("\n Roll number = %d",ptr[i]->r_no);
+        printf("\n Name = %s",ptr[i]->name);
+        printf("\n Coures = %s",ptr[i]->courses);
+        printf("\n Fees = %d",ptr[i]->fees);
+    }
     return 0;
 }
